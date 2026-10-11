@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "entity-extraction"
+version = "0.1.0"
+description = "Evidence-linked entity and relationship extraction from text, PDFs, and web pages."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "requests>=2.31",
+  "beautifulsoup4>=4.12",
+  "pypdf>=4.2",
+  "pydantic>=2.7",
+  "sqlalchemy>=2.0",
+]
+
+[project.optional-dependencies]
+nlp = ["spacy>=3.7"]
+dev = ["pytest>=8.0", "ruff>=0.5"]
+
+[project.scripts]
+entity-extractor = "entity_extractor.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
